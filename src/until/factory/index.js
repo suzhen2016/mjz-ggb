@@ -1,5 +1,6 @@
 
 import ENV from '../ENV.js'
+const crypto = require('crypto');
 class factory {
     static setTimeout;
     static office_converter;
@@ -17,10 +18,10 @@ class factory {
         clearTimeout(this.setTimeout)
         this.setTimeout = setTimeout(cb, ts)
     }
+    
     static storage(ENV){
         function Storage(storage) {
             this.get = function(name,data) {
-                // if(window[storage][name])
                 return JSON.parse(window[storage][name] || '{}' ) 
             };
             this.set = function (name,data) {
@@ -63,6 +64,7 @@ class factory {
         let nowDate = year + '-' + month + '-' + day
         return nowDate
     }
+    
     /*
        数字转中文
        @number {Integer} 形如123的数字
@@ -170,10 +172,31 @@ class factory {
         })
         return number
     }
+
+    // odejs-aes-128-cbc加解密算法
+    // 解密
+    static decrypt (key, iv, crypted) {
+        crypted = new Buffer(crypted, 'base64').toString('binary');
+        var decipher = crypto.createDecipheriv('aes-128-cbc', key, iv);
+        var decoded = decipher.update(crypted, 'binary', 'utf8');
+        decoded += decipher.final('utf8');
+        return decoded;
+    }
+
+    // 加密
+    static crypted (key, iv, data) {
+        let cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
+        let crypted = cipher.update(data, 'utf8', 'binary');
+        crypted += cipher.final('binary');
+        crypted = new Buffer(crypted, 'binary').toString('base64');
+        return crypted;
+    }
     
 }
 
 export default{
-    phone_reg_fag:factory.get_phone_reg,
-    Storage:factory.storage(ENV)
+    phone_reg_fag: factory.get_phone_reg,
+    Storage: factory.storage(ENV),
+    decrypt : factory.decrypt,
+    crypted : factory.crypted
 }

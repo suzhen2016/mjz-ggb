@@ -1,15 +1,14 @@
 <template>
   <div class="pre" >
        <!-- 顶部 -->
-      <nav-header title='修改密码' back='true'></nav-header> 
+      <nav-header title='修改名称' back='true'></nav-header> 
       <div class='content change' style="height:calc(100% - 44px)">
-        <group title="新登录密码">
-          <x-input  placeholder='至少六位新密码' type="password"    v-model="query.loginPwd"></x-input>
+        <group title="新名称">
+          <x-input  placeholder='请输入' type="text"    v-model="query.priceName"></x-input>
         </group>
-        <group title="确认登录密码">
-          <x-input  placeholder='请再次确认登录密码' type='password'   v-model="loginTwoPwd"></x-input>
-        </group>
-
+        <!-- <group title="确认登录密码">
+          <x-input  placeholder='请再次确认登录密码' type=''   v-model="loginTwoPwd"></x-input>
+        </group> -->
         <div class="box btns">
           <x-button  type="primary" @click.native='confirm()'>确定</x-button>
         </div>
@@ -28,7 +27,7 @@ export default {
 	data () {
 		return {
 			query:{
-				loginPwd:'',
+				priceName:'',
 			},
 			loginTwoPwd:'',
 			error:'',
@@ -45,15 +44,15 @@ export default {
 	methods: {
 		async confirm(){
 			let err = []
-			if(!this.query.loginPwd) err.push('请输入密码')
-			if(this.query.loginPwd !== this.loginTwoPwd) err.push('两次密码不一致')
+			if(!this.query.priceName) err.push('请输入名称')
+			// if(this.query.priceName !== this.loginTwoPwd) err.push('两次密码不一致')
 			if(err.length>0){
 				this.error = err[0];
 				this.show_err = true;
 				return false;
 			}
 			try {
-				let res = await api.APIPOSTMAN('POST','/mine/updateUserLoginPwdById',{userId :this.userInfo.id,loginPwd:this.query.loginPwd})
+				let res = await api.APIPOSTMAN('POST','/mine/updateUserpriceNameById',{userId :this.userInfo.id,priceName:this.query.priceName})
 				if(res.data.code == 200){
 					this.error = '修改成功';
 					history.back()
@@ -69,7 +68,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  lang="less">
 .gap{
   margin-top: 160px;

@@ -1,8 +1,9 @@
 <template>
   <div class="hb-header">
     <x-header :left-options="{showBack: back}" :right-options="{showMore: false}" @on-click-more="showMenus = true">
-      {{title}}
-      <a slot="right" v-if='right' @click='goNext()'>{{right}}</a>
+      	{{title}}
+        <a slot="right" v-if='right' @click='goNext()'>{{right}}</a>
+		<a slot="left" class='back' v-if='left' @click='goNext()'> <i class="left-arrow"></i>{{left}}</a>
     </x-header>
   </div>
 </template>
@@ -23,7 +24,6 @@ export default {
 	props:{
 		title:{
 			type:String,
-			// required:true,
 		},
 		back:{
 			type:String,
@@ -31,6 +31,9 @@ export default {
 		},
 		right:{
 			type:String,
+		},
+		left: {
+			type: String,
 		},
 		right_link:{
 			type:String,
@@ -64,21 +67,28 @@ export default {
 </script>
 
 <style lang="less">
-.vux-header{
-  background-color: #fff !important;
-  border-bottom: 1px solid #ccc;
-}
-.vux-header-back{
-  color:#000 !important;
-}
- .vux-header-title{
-    color:#000 !important;
-}
-  .hb-header{
-    .vux-header .vux-header-right a {
-      // border:1.5px solid #000;
-      color:#333;
-    }
-  }
+	.vux-header{
+		background-color: #fff !important;
+		border-bottom: 1px solid #ccc;
+	}
+	.vux-header-back{
+		color:#000 !important;
+	}
+	.vux-header-title{
+			color:#000 !important;
+	}
+	.hb-header{
+		.vux-header .vux-header-right a {
+			color:#333;
+		}
+		.vux-header-left .back {
+			padding-left: 16px;
+			color: #000;
+			.left-arrow {
+				color : #ccc;
+			}
+		}
+	}
+
   
 </style>

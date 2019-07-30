@@ -49,7 +49,7 @@ export default {
 			
 		],
 		login_type:'phone',
-		login_btn:'登陆交易所',
+		login_btn:'登陆钱包',
 		
 		error:'',
 		show_err:false,

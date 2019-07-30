@@ -58,7 +58,7 @@ class Api {
         return new Promise(async(resolve,reject)=>{
             try {
                 let res = await req[type](url, data)
-                return resolve(res)
+                return resolve(res.data)
             } catch (error) {
                 return reject(error)
             }

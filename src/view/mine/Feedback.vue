@@ -37,7 +37,7 @@ export default {
     return {
       	query:{},
       	error:'',
-		show_err:false,
+		    show_err:false,
     }
   },
   computed: {

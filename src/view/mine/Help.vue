@@ -1,25 +1,19 @@
 <template>
   <div class="pre" >
        <!-- 顶部 -->
-      <nav-header title='设置' back='true'></nav-header> 
+      <nav-header title='设置' right_link="Price" left = "返回"></nav-header> 
       <div class='content help' style="height:calc(100% - 44px)">
-        <ul class='clearfix ul-box' style="height: calc(100% - 188px)">
-          <li @click='goDetail()'>
-            <i>@</i> 苏氏之道
-          </li>
-		  <li @click='goDetail()'>
-            <i>@</i> 苏氏之道
-          </li>
-		  <li @click='goDetail()'>
-            <i>@</i> 苏氏之道
-          </li>
-		  <li @click='goDetail()'>
-            <i>@</i> 苏氏之道
-          </li>
-		  <li @click='goDetail()'>
-            <i>@</i> 苏氏之道
-          </li>
-        </ul>
+		<ul class='clearfix ul-box' style="height: calc(100% - 188px)">
+			<li @click='goSet()'>
+				<i>@</i> 苏氏之道
+			</li>
+			<li @click='goSet()'>
+				<i>@</i> 苏氏之道
+			</li>
+			<li @click='goSet()'>
+				<i>@</i> 苏氏之道
+			</li>
+		</ul>
 		<x-button class="btn"  type="primary" @click.native='goDetail()'>新建</x-button>
 		<x-button  type="primary" @click.native='confirm()'>导入</x-button>
       </div>
@@ -30,25 +24,33 @@
 import api from '../../until/help/api'
 import { XButton } from 'vux';
 export default {
-  name: 'help',
-  data () {
-    return {
-      list:[
-        {text:'交易所使用教程'},
-        {text:'货币/提币'},
-        {text:'区块链知识'},
-        {text:'公告中心'}
-      ]
-    }
-  },
-  components: {
-    navHeader:()=>import('@/components/navHeader'), XButton
-  },
-  methods: {
-    goDetail(){
-      this.$router.push({name:'New_add'})
-    }
-  },
+  	name: 'help',
+	data () {
+		return {
+			list:[
+				{text:'交易所使用教程'},
+				{text:'货币/提币'},
+				{text:'区块链知识'},
+				{text:'公告中心'}
+			]
+		}
+	},
+  	components: {
+    	navHeader:()=>import('@/components/navHeader'), XButton
+	},
+	
+	mounted() {
+		console.log('初始化');
+	},
+	methods: {
+		goDetail (){
+			this.$router.push({name:'New_add'})
+		},
+
+		goSet (){
+			this.$router.push({name:'userSet'})
+		}
+	},
 }
 </script>
 
@@ -61,7 +63,7 @@ export default {
 	padding: 0 20px;
 	overflow-y: auto;
     li{
-		margin-top: 20px;
+		margin-top: 10px;
 		width: 100%;
 		height: 57px;
 		line-height: 57px;

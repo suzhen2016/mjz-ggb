@@ -1,4 +1,4 @@
 export default {
-    hb_host:'http://120.78.206.130:8080',
+    hb_host:'http://117.48.231.127:9898',
     storage:'localStorage', //sessionStorage
 }

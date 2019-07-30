@@ -1,7 +1,7 @@
 <template>
   <div class = 'pre ' style="height:calc(100% - 44px)">
     <!-- 顶部 -->
-    <nav-header title='行情' right= '设置' right_link='Help'></nav-header> 
+    <nav-header title='钱包' right= '设置' right_link='Help'></nav-header> 
     <!-- 内容 -->
     <div class="content price" style="height:calc(100% - 44px)">
 		<div class='car'>
@@ -9,7 +9,6 @@
 			<p class="sum_price">总资产(元)</p>
 			<p class="has_count">2489</p>
 			<p class="has_count"><i>$</i>0</p>
-			<p class="add-b"><span>+</span></p>
 			<!-- <p class="caozuo clearfix"><span @click="setDb('put')">充币</span><span @click="setDb('pick')">提币</span></p> -->
 		</div>
 		<div class="safe">
@@ -24,10 +23,10 @@
 				</ul>
 			</div>
 		</div>
-		<ul class="data_box" style='height:calc(100% - 341px)'>
+		<ul class="data_box" style='height:calc(100% - 260px)'>
 			<li @click="goTrade()" v-for="(i,index) in list" :key='index'>
 				<div><input type="checkbox" ></div>
-				<div><p>USDT</p><p>￥2309.24</p></div>
+				<div><p>{{i.coinName}}</p><p>￥2309.24</p></div>
 				<div><p class="new_price">0</p><p>0.00</p></div>
 			</li>
 		</ul>
@@ -64,20 +63,54 @@ export default {
 			error:'',
 			show_err:false,
 			setTimeOut:null,   
-			list:[{},{},{}],
+			list:[],
 		}
 	},
 	mounted() {
 		this.getPriceDetail()
 		this.setTimeOut = null;
 		// console.log('222')
+		this.list = [ {
+            "addrId": "890058d0-b142-11e9-be48-610c1b25420b",
+            "chainName": "Bitcoin",
+            "coinName": "BTC",
+            "address": "16ACgPosX3bz9z3ZGcZyYE8fM3oMtspXfh",
+            "changeAddr": "16ACgPosX3bz9z3ZGcZyYE8fM3oMtspXfh",
+            "privateKey": "l5TaG+D3g6lqdaoINdHUG5f83oQqRUdFK0Blu4Uladl1EYLmxtKTbzkZdip0fBfkF3qtESBqYXnT92djoQpRog=="
+        }, {
+            "addrId": "890058d0-b142-11e9-be48-610c1b25420b",
+            "chainName": "OMNI",
+            "coinName": "USDT",
+            "address": "16ACgPosX3bz9z3ZGcZyYE8fM3oMtspXfh",
+            "privateKey": "l5TaG+D3g6lqdaoINdHUG5f83oQqRUdFK0Blu4Uladl1EYLmxtKTbzkZdip0fBfkF3qtESBqYXnT92djoQpRog=="
+        }, {
+            "addrId": "890058d0-b142-11e9-be48-610c1b25420b",
+            "chainName": "Ethereum",
+            "coinName": "ETH",
+            "address": "0x26d0dcec11df96ea411f8c5d87f1712e62f094e1",
+            "privateKey": "4HYbTSMyaMUUKH1G9IcN0jyjiW0jHXkGY7c2VfKXY4VOWZmM5XU7FC2tfeomAPgyU5XncoP13C+QwwcRSAmiHp8stHdbWP2xvTo8acKzrRI="
+        },{
+            "addrId": "890058d0-b142-11e9-be48-610c1b25420b",
+            "chainName": "Ethereum",
+            "coinName": "WWB",
+            "contractName": "0x021ffd6f14a8715321493a2b8cb9ced32f8a7619",
+            "address": "0x26d0dcec11df96ea411f8c5d87f1712e62f094e1",
+            "privateKey": "4HYbTSMyaMUUKH1G9IcN0jyjiW0jHXkGY7c2VfKXY4VOWZmM5XU7FC2tfeomAPgyU5XncoP13C+QwwcRSAmiHp8stHdbWP2xvTo8acKzrRI="
+        },{
+            "addrId": "890058d0-b142-11e9-be48-610c1b25420b",
+            "chainName": "Ethereum",
+            "coinName": "USDT-ERC20",
+            "contractName": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "address": "0x26d0dcec11df96ea411f8c5d87f1712e62f094e1",
+            "privateKey": "4HYbTSMyaMUUKH1G9IcN0jyjiW0jHXkGY7c2VfKXY4VOWZmM5XU7FC2tfeomAPgyU5XncoP13C+QwwcRSAmiHp8stHdbWP2xvTo8acKzrRI="
+        }]
 	},
 	activated(){
 		this.setTimeOut = null;
 		clearInterval(this.setTimeOut);
 		// this.getPriceDetail()
-		this.initPrice();
-		this.initTime()
+		// this.initPrice();
+		// this.initTime()
 	},
 	methods: {
 		setDb(type){
@@ -258,6 +291,7 @@ export default {
 				border-bottom: 1px solid #E6E6E6;
 				box-sizing: border-box;
 				div	{
+					text-align: left;
 					&:first-child {width: 10%;text-align: center;}
 					&:nth-child(2) {width: 40%;text-align: center;}
 					&:last-child {width: 40%;text-align: right;}

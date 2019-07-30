@@ -93,14 +93,29 @@ export default new Router({
       component:() => import('@/view/mine/Help.vue'),
     },
     {
-      path:'/new_add',
-      name:"New_add",
-      component:() => import('@/view/mine/Help_text.vue'),
-    },
+		path:'/new_add',
+		name:"New_add",
+		component:() => import('@/view/mine/Help_text.vue'),
+	},
+	{
+		path:'/userSet',
+		name:"userSet",
+		component:() => import('@/view/mine/Set.vue'),
+	},
+	{
+		path:'/z_word',
+		name:"Z_word",
+		component:() => import('@/view/mine/Word.vue'),
+	},
+	{
+		path:'/pick_word',
+		name:"Pick_word",
+		component:() => import('@/view/mine/Pick_word.vue'),
+	},
     {
-      path:'/changePassword',
-      name:"ChangePassword",
-      component:() => import('@/view/mine/ChangePassword.vue'),
+      path:'/change_name',
+      name:"ChangeName",
+      component:() => import('@/view/mine/ChangeName.vue'),
     },
     {
       path:'/changeFund',

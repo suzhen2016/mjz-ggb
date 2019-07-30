@@ -1,12 +1,15 @@
 <template>
   <div class="pre" >
        <!-- 顶部 -->
-      <nav-header title='修改资金密码' back='true'></nav-header> 
+      <nav-header title='修改密码' back='true'></nav-header> 
       <div class='content change' style="height:calc(100% - 44px)">
-        <group title="新资金密码">
+		<group title="旧密码">
           <x-input type='password' placeholder='至少六位新密码'   v-model="query.assetPwd"></x-input>
         </group>
-        <group title="确认资金密码">
+        <group title="新密码">
+          <x-input type='password' placeholder='至少六位新密码'   v-model="query.assetPwd"></x-input>
+        </group>
+        <group title="确认密码">
           <x-input type='password' placeholder='请再次确认资金密码'   v-model="query.assetTwoPwd"></x-input>
         </group>
 
